@@ -74,7 +74,7 @@ nav a:hover{color:var(--ore-ink)}
 @keyframes rise{0%{transform:translateY(0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateY(-340px);opacity:0}}
 @media (prefers-reduced-motion:reduce){.dot{animation:none;opacity:0}html{scroll-behavior:auto}}
 
-/* Why one engineer */
+/* Value */
 .why{background:var(--quartz);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .compare{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:48px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .compare > div{padding:36px}
@@ -133,16 +133,15 @@ nav a:hover{color:var(--ore-ink)}
 .contact{background:var(--bedrock);color:#F2F4F3;padding:96px 0}
 .contact h2{color:#F2F4F3;max-width:20ch}
 .contact p{color:#C9D3D1}
-.contact-actions{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:22px}
 .cta-big{display:inline-block;background:var(--gold);color:#1D2A2F;text-decoration:none;padding:18px 30px;border-radius:12px;font-size:clamp(1.4rem,3vw,2.2rem);line-height:1.15;transition:background .15s}
 .cta-big:hover{background:#fff}
 .btn-gold{background:var(--gold);border-color:var(--gold);color:#1D2A2F}
 .btn-gold:hover{background:#fff;border-color:#fff;color:#1D2A2F}
-.mail{font-size:1rem;font-weight:600;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold)}
-.mail:hover{color:#fff;border-color:#fff}
 @media (prefers-color-scheme: dark){.contact{background:#0F181C}}
 footer{padding:28px 0;font-size:.9rem;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{color:inherit;text-decoration:none}
+footer a:hover{color:var(--gold)}
 
 /* Responsive */
 @media (max-width:900px){
@@ -175,7 +174,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     <nav aria-label="Main">
       <button class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
       <ul id="nav-links">
-        <li><a href="#why">Why one engineer</a></li>
+        <li><a href="#value">Value</a></li>
         <li><a href="#how">How it works</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#experience">Experience</a></li>
@@ -246,9 +245,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     </div>
   </section>
 
-  <section class="why" id="why">
+  <section class="why" id="value">
     <div class="wrap">
-      <h2>Why one engineer instead of a team</h2>
+      <h2>More value, less overhead</h2>
       <div class="compare">
         <div class="them">
           <h3>A typical consultancy staffs your project with</h3>
@@ -363,9 +362,6 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     <div class="wrap">
       <h2><a class="cta-big" href="mailto:andrew@lodeanalytics.com?subject=Discovery%20call">Start with a discovery call</a></h2>
       <p style="margin-top:16px">Bring a list of your systems and the questions you can't answer today. We'll map each one and scope a first pipeline you can see working.</p>
-      <div class="contact-actions">
-        <a class="mail" href="mailto:andrew@lodeanalytics.com">andrew@lodeanalytics.com</a>
-      </div>
     </div>
   </section>
 </main>
@@ -373,6 +369,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 <footer>
   <div class="wrap">
     <span>&copy; 2026 Lode Analytics</span>
+    <a href="mailto:andrew@lodeanalytics.com">andrew@lodeanalytics.com</a>
     <span>Dallas&ndash;Fort Worth, Texas</span>
   </div>
 </footer>
@@ -383,9 +380,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   btn.addEventListener('click', () => {
     const open = links.classList.toggle('open');
     btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? 'Close' : 'Menu';
   });
   links.addEventListener('click', e => {
-    if (e.target.tagName === 'A') { links.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
+    if (e.target.tagName === 'A') { links.classList.remove('open'); btn.setAttribute('aria-expanded', false); btn.textContent = 'Menu'; }
   });
 </script>
 </body>
