@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lode Analytics | Data Engineering on Microsoft Fabric</title>
+<meta name="description" content="Lode Analytics helps growing manufacturers and distributors turn ERP, SaaS, and spreadsheet data into automated Power BI reporting on Microsoft Fabric. Fixed prices, one accountable engineer.">
+<meta name="theme-color" content="#16324f">
+<link rel="canonical" href="https://lodeanalytics.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lodeanalytics.com/">
+<meta property="og:site_name" content="Lode Analytics">
+<meta property="og:title" content="Lode Analytics | Reporting you can trust">
+<meta property="og:description" content="Automated Power BI reporting on Microsoft Fabric for growing manufacturers and distributors. One accountable engineer from infrastructure to dashboard, fixed prices, and a system your team owns.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f8a70'/%3E%3Cpath d='M11 8v16h11v-3.5h-7V8z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#16324f;--green:#1f8a70;--green-hover:#197560;--tint:#eef3f7;--text:#1f2933;
+  --bg:#ffffff;--surface:#ffffff;--muted:#52606d;--border:#dde5ec;
+  --shadow:0 1px 2px rgba(22,50,79,.06),0 4px 16px rgba(22,50,79,.06);
+  --shadow-hover:0 2px 4px rgba(22,50,79,.08),0 12px 32px rgba(22,50,79,.12);
+  --heading:var(--navy);--header-bg:rgba(255,255,255,.82);
+  --bronze:#a8673a;--silver:#7b8794;--gold:#b88a1a;
+  --radius:14px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0d1722;--surface:#132232;--tint:#101d2b;--text:#e4ebf2;--muted:#9aa9b8;
+    --border:#22364b;--heading:#f2f6fa;--header-bg:rgba(13,23,34,.82);
+    --green:#2aa585;--green-hover:#33b893;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.25);
+    --shadow-hover:0 2px 4px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.4);
+    --bronze:#d08b5b;--silver:#a9b5c1;--gold:#dcb23e;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{color:var(--heading);line-height:1.15;letter-spacing:-.02em;margin:0}
+p{margin:0}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+section{padding:104px 0}
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+.section-head{max-width:680px;margin-bottom:56px}
+.section-head h2{font-size:clamp(28px,4vw,40px);font-weight:700;margin-top:12px}
+.section-head p{margin-top:16px;color:var(--muted);font-size:18px}
+
+/* Header */
+header{position:sticky;top:0;z-index:50;background:var(--header-bg);backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+header.scrolled{border-bottom-color:var(--border)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:18px;color:var(--heading);letter-spacing:-.01em;white-space:nowrap}
+.logo-mark{width:30px;height:30px;border-radius:8px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:800;font-size:17px;line-height:1}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;margin:0;padding:0}
+.nav-links a{text-decoration:none;font-size:15px;font-weight:500;color:var(--muted);transition:color .15s}
+.nav-links a:hover{color:var(--heading)}
+.menu-btn{display:none;background:none;border:1px solid var(--border);border-radius:10px;width:42px;height:42px;cursor:pointer;color:var(--heading)}
+.menu-btn svg{display:block;margin:auto}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid transparent;transition:background .15s,transform .15s,box-shadow .15s,border-color .15s;white-space:nowrap}
+.btn-primary{background:var(--green);color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.btn-primary:hover{background:var(--green-hover);transform:translateY(-1px);box-shadow:0 6px 18px rgba(31,138,112,.3)}
+.btn-secondary{background:var(--surface);color:var(--heading);border-color:var(--border)}
+.btn-secondary:hover{border-color:var(--heading);transform:translateY(-1px)}
+.btn-sm{padding:9px 16px;font-size:14px}
+.btn:focus-visible,.nav-links a:focus-visible,.menu-btn:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+
+/* Hero */
+.hero{padding:120px 0 112px;background:radial-gradient(1200px 500px at 85% -10%,var(--tint),transparent 70%)}
+.hero h1{font-size:clamp(36px,6vw,64px);font-weight:800;letter-spacing:-.035em;max-width:900px;margin-top:20px}
+.hero h1 span{color:var(--green)}
+.hero p.lead{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:720px;margin-top:24px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--border);border-radius:999px;background:var(--surface);font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--heading)}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+
+/* Flow */
+.alt{background:var(--tint)}
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;list-style:none;margin:0;padding:0;counter-reset:step}
+.flow li{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 18px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s,border-color .2s;counter-increment:step}
+.flow li:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:var(--green)}
+.flow li::before{content:counter(step,decimal-leading-zero);display:block;font-size:12px;font-weight:700;color:var(--green);letter-spacing:.06em;margin-bottom:10px}
+.flow li:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:10px;height:10px;border-top:2px solid var(--green);border-right:2px solid var(--green);transform:translateY(-50%) rotate(45deg);opacity:.7;z-index:1}
+.flow h3{font-size:16px;font-weight:700}
+.flow p{font-size:14px;color:var(--muted);margin-top:6px;line-height:1.5}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:6px;border:1px solid currentColor}
+.tag.bronze{color:var(--bronze)}.tag.silver{color:var(--silver)}.tag.gold{color:var(--gold)}
+
+/* Services */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:rgba(31,138,112,.5)}
+.card .meta{display:inline-block;font-size:13px;font-weight:600;color:var(--green);background:rgba(31,138,112,.1);padding:4px 10px;border-radius:999px}
+.card h3{font-size:22px;font-weight:700;margin-top:16px}
+.check{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px}
+.check li{position:relative;padding-left:28px;font-size:15.5px;color:var(--text)}
+.check li::before{content:"";position:absolute;left:0;top:5px;width:18px;height:18px;border-radius:50%;background:rgba(31,138,112,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%231f8a70' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
+
+/* Experience */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.stat{padding:8px 0 0;border-top:2px solid var(--green)}
+.stat .num{font-size:clamp(44px,6vw,64px);font-weight:800;letter-spacing:-.04em;color:var(--heading);line-height:1.1;margin-top:20px}
+.stat p{color:var(--muted);margin-top:8px;max-width:300px}
+.sources{margin-top:56px;padding:24px 28px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);font-size:16px}
+.sources strong{color:var(--heading)}
+
+/* Case study */
+.case{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;background:var(--navy);color:#e4ebf2;border-radius:20px;padding:56px;box-shadow:var(--shadow-hover);position:relative;overflow:hidden}
+.case::after{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(31,138,112,.35),transparent 70%)}
+.case .eyebrow{color:#5fd1b1}
+.case h2{color:#fff;font-size:clamp(26px,3.4vw,36px);font-weight:700;margin-top:12px}
+.case p{color:#c4d1dd;margin-top:16px}
+.case-stats{display:grid;gap:16px;position:relative;z-index:1}
+.case-stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:22px 24px}
+.case-stat .num{font-size:40px;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1}
+.case-stat p{margin-top:6px;font-size:15px}
+
+/* Engagements */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{border:1px solid var(--border);border-radius:var(--radius);padding:36px;background:var(--surface);box-shadow:var(--shadow)}
+.panel h3{font-size:22px;font-weight:700}
+.panel.fit{background:var(--tint)}
+
+/* Contact */
+.contact{background:linear-gradient(135deg,var(--navy) 0%,#0f2740 60%,#134a46 100%);color:#fff;text-align:center;padding:112px 0}
+.contact h2{color:#fff;font-size:clamp(28px,4.5vw,46px);font-weight:800;max-width:820px;margin:0 auto;letter-spacing:-.03em}
+.contact p{color:#c4d1dd;font-size:18px;max-width:640px;margin:20px auto 0}
+.contact .btn-primary{margin-top:36px;padding:14px 28px;font-size:16px}
+.contact .email{display:block;margin-top:18px;color:#c4d1dd;font-size:15px;text-decoration:none}
+.contact .email:hover{color:#fff;text-decoration:underline}
+
+/* Footer */
+footer{padding:32px 0;border-top:1px solid var(--border);font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:var(--heading)}
+
+/* Responsive */
+@media (max-width:1024px){
+  .flow{grid-template-columns:repeat(3,1fr);row-gap:28px}
+  .flow li:nth-child(3)::after{display:none}
+}
+@media (max-width:860px){
+  section{padding:80px 0}
+  .cards,.two-col,.stats,.case{grid-template-columns:1fr}
+  .case{padding:40px 28px;gap:32px}
+  .stats{gap:36px}
+}
+@media (max-width:760px){
+  .menu-btn{display:block}
+  .nav-cta{display:none}
+  .nav-links{position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--bg);border-bottom:1px solid var(--border);padding:8px 24px 20px;display:none}
+  .nav-links.open{display:flex}
+  .nav-links li a{display:block;padding:12px 0;font-size:16px}
+  .nav-links .mobile-cta{display:block;margin-top:8px}
+  .nav-links .mobile-cta a{display:flex;color:#fff}
+}
+@media (min-width:761px){.nav-links .mobile-cta{display:none}}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .hero{padding:72px 0 80px}
+  .hero-ctas .btn{flex:1 1 100%}
+  .flow{grid-template-columns:1fr;gap:22px}
+  .flow li::after{display:block!important;right:auto;left:50%;top:auto;bottom:-17px;transform:translateX(-50%) rotate(135deg)}
+  .flow li:last-child::after{display:none!important}
+  .card,.panel{padding:26px 22px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Lode Analytics home"><span class="logo-mark" aria-hidden="true">L</span>Lode Analytics</a>
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="mobile-cta"><a class="btn btn-primary" href="mailto:andrew@lodeanalytics.com">Book a discovery call</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary btn-sm nav-cta" href="mailto:andrew@lodeanalytics.com">Book a discovery call</a>
+    <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="pill"><span class="dot"></span>Data engineering on Microsoft Fabric</span>
+      <h1>Reporting you can trust, built by <span>the engineer who does the work.</span></h1>
+      <p class="lead">Lode Analytics helps growing manufacturers and distributors turn ERP, SaaS, and spreadsheet data into automated Power BI reporting on Microsoft Fabric. One accountable engineer from infrastructure to dashboard, fixed prices, and a system your team owns.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="mailto:andrew@lodeanalytics.com">Book a discovery call</a>
+        <a class="btn btn-secondary" href="#approach">See how it works &darr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="approach">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>From scattered sources to dashboards your team relies on.</h2>
+      </div>
+      <ol class="flow">
+        <li><h3>Source systems</h3><p>ERP, CRM, SaaS, SQL, files</p></li>
+        <li><h3>Ingestion</h3><p>Scheduled, incremental loads</p></li>
+        <li><h3>Lakehouse</h3><p>OneLake, open Delta tables</p></li>
+        <li><h3>Medallion</h3><p>Raw, clean, and business-ready layers</p>
+          <div class="tags"><span class="tag bronze" title="Raw">Bronze</span><span class="tag silver" title="Clean">Silver</span><span class="tag gold" title="Business-ready">Gold</span></div></li>
+        <li><h3>Warehouse</h3><p>Modeled tables, SQL access</p></li>
+        <li><h3>Reporting</h3><p>Power BI dashboards</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Services</span>
+        <h2>Fixed-price phases, scoped to what you need next.</h2>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="meta">Fixed fee · 1–2 weeks</span>
+          <h3>Discovery &amp; Assessment</h3>
+          <ul class="check">
+            <li>Map your systems and reporting needs</li>
+            <li>Data readiness and licensing review</li>
+            <li>Fabric capacity sizing</li>
+            <li>Written roadmap and fixed-price quote</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="meta">Fixed price · 30–60 days</span>
+          <h3>Platform Build + First Pipeline</h3>
+          <ul class="check">
+            <li>No Fabric yet? Full setup: capacity, gateway, workspaces, security, Git</li>
+            <li>First source through bronze, silver, and gold</li>
+            <li>First Power BI dashboard on a schedule</li>
+            <li>Documentation and handoff</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="meta">Fixed price per phase</span>
+          <h3>Reporting Expansion</h3>
+          <ul class="check">
+            <li>Add sources: ERP, CRM, SaaS APIs, SQL, Excel</li>
+            <li>New subject areas: sales, margin, inventory, production, finance</li>
+            <li>Shared KPI definitions</li>
+            <li>Row-level security</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="meta">For existing Fabric environments</span>
+          <h3>Health Check &amp; Optimization</h3>
+          <ul class="check">
+            <li>Diagnose capacity overruns and failed refreshes</li>
+            <li>Move full reloads to incremental</li>
+            <li>Right-size capacity and reduce cost</li>
+            <li>Monitoring and failure alerts</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Experience</span>
+        <h2>Built in production, not on slides.</h2>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="num">2+ years</div><p>Leading data and IT for a food manufacturer</p></div>
+        <div class="stat"><div class="num">1.5 years</div><p>Delivering pipelines alongside a data analytics consultancy</p></div>
+        <div class="stat"><div class="num">50+</div><p>Pipelines running in production, API to report</p></div>
+      </div>
+      <p class="sources"><strong>Sources delivered end to end:</strong> REST and OData APIs, ERP connectors, SQL databases, SaaS platforms, on-premises systems via gateway, and Excel/CSV files.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="case">
+        <div>
+          <span class="eyebrow">Case study</span>
+          <h2>A food manufacturer replaces hand-built reports with one source of truth.</h2>
+          <p>Finance, MRP and demand planning, and OEE reporting from the same checked data, on a schedule.</p>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat"><div class="num">~100</div><p>Source tables and API feeds automated across ERP, SQL, and production systems</p></div>
+          <div class="case-stat"><div class="num">2–3 weeks</div><p>From kickoff to first live report</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="engagements">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How engagements work</span>
+        <h2>Clear scope, clear price, and nothing locked away.</h2>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <h3>The engagement</h3>
+          <ul class="check">
+            <li>Fixed price per phase in a written SOW</li>
+            <li>Start small with one source and one report</li>
+            <li>You own everything (code, tables, reports, documentation) in your tenant</li>
+            <li>Optional support retainer</li>
+          </ul>
+        </div>
+        <div class="panel fit">
+          <h3>Good fit if you…</h3>
+          <ul class="check">
+            <li>Run Microsoft 365 with an ERP such as Business Central</li>
+            <li>Don't have Fabric yet or need it set up properly</li>
+            <li>Rebuild the same reports by hand every week</li>
+            <li>Have departments whose numbers don't match</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Start with a discovery call.</h2>
+      <p>Bring a list of your systems and the questions you can't answer today.</p>
+      <a class="btn btn-primary" href="mailto:andrew@lodeanalytics.com">Book a discovery call</a>
+      <a class="email" href="mailto:andrew@lodeanalytics.com">andrew@lodeanalytics.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Lode Analytics · Dallas–Fort Worth, Texas</span>
+    <a href="mailto:andrew@lodeanalytics.com">andrew@lodeanalytics.com</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var h=document.querySelector('header'),b=document.getElementById('menu-btn'),n=document.getElementById('nav-links');
+  function s(){h.classList.toggle('scrolled',window.scrollY>8)}
+  window.addEventListener('scroll',s,{passive:true});s();
+  b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu')});
+  n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open');b.setAttribute('aria-expanded','false')}});
+})();
+</script>
+</body>
+</html>
