@@ -1,365 +1,359 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lode Analytics | Data Engineering on Microsoft Fabric</title>
-<meta name="description" content="Lode Analytics helps growing manufacturers and distributors turn ERP, SaaS, and spreadsheet data into automated Power BI reporting on Microsoft Fabric. Fixed prices, one accountable engineer.">
-<meta name="theme-color" content="#16324f">
+<title>Lode Analytics | Data engineering on Microsoft Fabric</title>
+<meta name="description" content="Big-firm data engineering without the big-firm invoice. One senior engineer builds your Microsoft Fabric platform and Power BI reporting, from workspace setup to dashboards.">
 <link rel="canonical" href="https://lodeanalytics.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lodeanalytics.com/">
-<meta property="og:site_name" content="Lode Analytics">
-<meta property="og:title" content="Lode Analytics | Reporting you can trust">
-<meta property="og:description" content="Automated Power BI reporting on Microsoft Fabric for growing manufacturers and distributors. One accountable engineer from infrastructure to dashboard, fixed prices, and a system your team owns.">
-<meta name="twitter:card" content="summary">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f8a70'/%3E%3Cpath d='M11 8v16h11v-3.5h-7V8z' fill='%23fff'/%3E%3C/svg%3E">
+<meta property="og:title" content="Lode Analytics | Data engineering on Microsoft Fabric">
+<meta property="og:description" content="One senior engineer builds your Microsoft Fabric platform and Power BI reporting, end to end, at a fixed price.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C08A2E'/%3E%3Ctext x='32' y='46' font-family='Arial,sans-serif' font-size='40' font-weight='700' text-anchor='middle' fill='%231D2A2F'%3EL%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#16324f;--green:#1f8a70;--green-hover:#197560;--tint:#eef3f7;--text:#1f2933;
-  --bg:#ffffff;--surface:#ffffff;--muted:#52606d;--border:#dde5ec;
-  --shadow:0 1px 2px rgba(22,50,79,.06),0 4px 16px rgba(22,50,79,.06);
-  --shadow-hover:0 2px 4px rgba(22,50,79,.08),0 12px 32px rgba(22,50,79,.12);
-  --heading:var(--navy);--header-bg:rgba(255,255,255,.82);
-  --bronze:#a8673a;--silver:#7b8794;--gold:#b88a1a;
-  --radius:14px;
+  --bedrock:#1D2A2F;   /* text, dark panels */
+  --shale:#EEF0EE;     /* page background */
+  --quartz:#FFFFFF;    /* raised surfaces */
+  --ore:#C08A2E;       /* gold accent, graphics only */
+  --ore-ink:#8A5F17;   /* gold accent for text/links */
+  --oxide:#3E6B63;     /* patina green, secondary */
+  --line:#CBD1CF;
+  --muted:#4E5D62;
+  --bronze:#A9714A; --silver:#B9C2C4; --gold:#E0B357;
+  --max:1120px;
 }
-@media (prefers-color-scheme:dark){
+@media (prefers-color-scheme: dark){
   :root{
-    --bg:#0d1722;--surface:#132232;--tint:#101d2b;--text:#e4ebf2;--muted:#9aa9b8;
-    --border:#22364b;--heading:#f2f6fa;--header-bg:rgba(13,23,34,.82);
-    --green:#2aa585;--green-hover:#33b893;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.25);
-    --shadow-hover:0 2px 4px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.4);
-    --bronze:#d08b5b;--silver:#a9b5c1;--gold:#dcb23e;
+    --shale:#162126; --quartz:#1D2A2F; --bedrock:#E8ECEA; --muted:#A9B6B4;
+    --line:#33454B; --ore-ink:#E0B357; --oxide:#7FB3A6;
   }
 }
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-h1,h2,h3{color:var(--heading);line-height:1.15;letter-spacing:-.02em;margin:0}
-p{margin:0}
-.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--shale);color:var(--bedrock);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;font-variation-settings:"wdth" 100;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--ore-ink)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--ore);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+h1,h2,h3{font-variation-settings:"wdth" 118;line-height:1.08;letter-spacing:-.01em;margin:0}
+h1{font-size:clamp(2.4rem,5.4vw,4.4rem);font-weight:800;max-width:15ch}
+h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:750;max-width:22ch}
+h3{font-size:1.15rem;font-weight:700;font-variation-settings:"wdth" 108}
+p{margin:0 0 1em;max-width:62ch}
+.lead{font-size:1.15rem;color:var(--muted)}
 section{padding:104px 0}
-.eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
-.section-head{max-width:680px;margin-bottom:56px}
-.section-head h2{font-size:clamp(28px,4vw,40px);font-weight:700;margin-top:12px}
-.section-head p{margin-top:16px;color:var(--muted);font-size:18px}
 
 /* Header */
-header{position:sticky;top:0;z-index:50;background:var(--header-bg);backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
-header.scrolled{border-bottom-color:var(--border)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
-.logo{display:flex;align-items:center;gap:3px;text-decoration:none;font-weight:700;font-size:18px;color:var(--heading);letter-spacing:-.01em;white-space:nowrap}
-.logo-mark{width:25px;height:25px;border-radius:7px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px;line-height:1}
-.nav-links{display:flex;align-items:center;gap:32px;list-style:none;margin:0;padding:0}
-.nav-links a{text-decoration:none;font-size:15px;font-weight:500;color:var(--muted);transition:color .15s;white-space:nowrap}
-.nav-links a:hover{color:var(--heading)}
-.menu-btn{display:none;background:none;border:1px solid var(--border);border-radius:10px;width:42px;height:42px;cursor:pointer;color:var(--heading)}
-.menu-btn svg{display:block;margin:auto}
-
-/* Buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid transparent;transition:background .15s,transform .15s,box-shadow .15s,border-color .15s;white-space:nowrap}
-.btn-primary{background:var(--green);color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08)}
-.btn-primary:hover{background:var(--green-hover);transform:translateY(-1px);box-shadow:0 6px 18px rgba(31,138,112,.3)}
-.btn-secondary{background:var(--surface);color:var(--heading);border-color:var(--border)}
-.btn-secondary:hover{border-color:var(--heading);transform:translateY(-1px)}
-.btn-sm{padding:9px 16px;font-size:14px}
-.btn:focus-visible,.nav-links a:focus-visible,.menu-btn:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--shale) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:2px;text-decoration:none;color:var(--bedrock);font-weight:800;font-size:1.35rem;font-variation-settings:"wdth" 118}
+.logo-box{width:25px;height:25px;border-radius:5px;background:var(--ore);color:#1D2A2F;display:grid;place-items:center;font-size:1rem;margin-right:1px}
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+nav a{color:var(--bedrock);text-decoration:none;font-size:.95rem;font-weight:500}
+nav a:hover{color:var(--ore-ink)}
+.btn{display:inline-block;padding:13px 22px;border-radius:8px;font-weight:650;text-decoration:none;font-size:1rem;border:2px solid var(--bedrock);transition:background .15s,color .15s}
+.btn-solid{background:var(--bedrock);color:var(--shale)}
+.btn-solid:hover{background:var(--oxide);border-color:var(--oxide);color:#fff}
+.btn-line{color:var(--bedrock)}
+.btn-line:hover{background:var(--bedrock);color:var(--shale)}
+.menu-btn{display:none;background:none;border:2px solid var(--bedrock);color:var(--bedrock);border-radius:8px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer}
+.head-cta{padding:9px 16px;font-size:.92rem}
 
 /* Hero */
-.hero{padding:120px 0 112px;background:radial-gradient(1200px 500px at 85% -10%,var(--tint),transparent 70%)}
-.hero h1{font-size:clamp(36px,6vw,64px);font-weight:800;letter-spacing:-.035em;max-width:900px;margin-top:20px}
-.hero h1 span{color:var(--green)}
-.hero p.lead{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:720px;margin-top:24px}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
-.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--border);border-radius:999px;background:var(--surface);font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--heading)}
-.pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+.hero{padding:72px 0 88px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero .lead{margin:28px 0 36px}
+.actions{display:flex;flex-wrap:wrap;gap:14px}
+.section-svg{width:100%;height:auto;display:block}
+.dot{animation:rise 5s linear infinite;opacity:0}
+.dot.d2{animation-delay:1.7s}.dot.d3{animation-delay:3.4s}
+@keyframes rise{0%{transform:translateY(0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateY(-340px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none;opacity:0}html{scroll-behavior:auto}}
 
-/* Flow */
-.alt{background:var(--tint)}
-.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;list-style:none;margin:0;padding:0;counter-reset:step}
-.flow li{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 18px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s,border-color .2s;counter-increment:step}
-.flow li:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:var(--green)}
-.flow li::before{content:counter(step,decimal-leading-zero);display:block;font-size:12px;font-weight:700;color:var(--green);letter-spacing:.06em;margin-bottom:10px}
-.flow li:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:10px;height:10px;border-top:2px solid var(--green);border-right:2px solid var(--green);transform:translateY(-50%) rotate(45deg);opacity:.7;z-index:1}
-.flow h3{font-size:16px;font-weight:700}
-.flow p{font-size:14px;color:var(--muted);margin-top:6px;line-height:1.5}
-.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
-.tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:6px;border:1px solid currentColor}
-.tag.bronze{color:var(--bronze)}.tag.silver{color:var(--silver)}.tag.gold{color:var(--gold)}
+/* Why one engineer */
+.why{background:var(--quartz);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:48px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.compare > div{padding:36px}
+.compare .them{background:var(--shale)}
+.compare .us{background:var(--bedrock);color:#F2F4F3}
+.compare ul{list-style:none;padding:0;margin:18px 0 0}
+.compare .them li{padding:10px 0;border-bottom:1px dashed var(--line);color:var(--muted)}
+.compare .them li:last-child{border-bottom:0}
+.compare .us p{color:#C9D3D1}
+.compare .us strong{color:#fff}
+.compare .us .big{font-size:1.6rem;font-weight:750;font-variation-settings:"wdth" 115;color:var(--gold);line-height:1.2;margin:18px 0 22px;max-width:20ch}
+@media (prefers-color-scheme: dark){.compare .us{background:#0F181C}}
+
+/* How it works: stratigraphic column */
+.flow{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+.strata{list-style:none;margin:0;padding:0;counter-reset:s}
+.strata li{display:grid;grid-template-columns:22px 1fr;gap:22px;counter-increment:s}
+.strata .band{border-radius:0}
+.strata li:first-child .band{border-radius:6px 6px 0 0}
+.strata li:last-child .band{border-radius:0 0 6px 6px}
+.strata .txt{padding:16px 0 22px}
+.strata h3::before{content:counter(s) ". ";color:var(--ore-ink)}
+.strata p{color:var(--muted);margin:4px 0 0;font-size:1rem}
+.tags{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.tag{font-size:.82rem;font-weight:600;padding:3px 10px;border-radius:999px;color:#1D2A2F}
 
 /* Services */
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s,border-color .2s}
-.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:rgba(31,138,112,.5)}
-.card .meta{display:inline-block;font-size:13px;font-weight:600;color:var(--green);background:rgba(31,138,112,.1);padding:4px 10px;border-radius:999px}
-.card h3{font-size:22px;font-weight:700;margin-top:16px}
-.cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.why{border-top:1px solid var(--border)}
-.why .card h3{margin-top:0;font-size:20px}
-.why .card p{margin-top:12px;color:var(--muted);font-size:16px}
-.check{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px}
-.check li{position:relative;padding-left:28px;font-size:15.5px;color:var(--text)}
-.check li::before{content:"";position:absolute;left:0;top:5px;width:18px;height:18px;border-radius:50%;background:rgba(31,138,112,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%231f8a70' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
+.svc{margin-top:48px;border-top:2px solid var(--bedrock)}
+.svc-row{display:grid;grid-template-columns:.9fr 1.1fr 1.2fr;gap:32px;padding:32px 0;border-bottom:1px solid var(--line)}
+.svc-row .terms{color:var(--oxide);font-weight:600;font-size:.95rem;margin-top:6px}
+.svc-row p{color:var(--muted);font-size:1rem;margin:0}
+.svc-row ul{margin:0;padding-left:18px;font-size:1rem}
+.svc-row li{margin-bottom:6px}
+.terms-note{margin-top:28px;color:var(--muted);font-size:1rem}
 
 /* Experience */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.stat{padding:8px 0 0;border-top:2px solid var(--green)}
-.stat .num{font-size:clamp(44px,6vw,64px);font-weight:800;letter-spacing:-.04em;color:var(--heading);line-height:1.1;margin-top:20px}
-.stat p{color:var(--muted);margin-top:8px;max-width:300px}
-.sources{margin-top:56px;padding:24px 28px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);font-size:16px}
-.sources strong{color:var(--heading)}
-
-/* Case study */
-.case{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;background:var(--navy);color:#e4ebf2;border-radius:20px;padding:56px;box-shadow:var(--shadow-hover);position:relative;overflow:hidden}
-.case::after{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(31,138,112,.35),transparent 70%)}
-.case .eyebrow{color:#5fd1b1}
-.case h2{color:#fff;font-size:clamp(26px,3.4vw,36px);font-weight:700;margin-top:12px}
-.case p{color:#c4d1dd;margin-top:16px}
-.case-stats{display:grid;gap:16px;position:relative;z-index:1}
-.case-stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:22px 24px}
-.case-stat .num{font-size:40px;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1}
-.case-stat p{margin-top:6px;font-size:15px}
+.exp{background:var(--quartz);border-top:1px solid var(--line)}
+.statement{font-size:clamp(1.35rem,2.4vw,1.85rem);line-height:1.4;font-variation-settings:"wdth" 108;font-weight:500;max-width:34ch;margin:28px 0 24px}
+.statement b{color:var(--ore-ink);font-weight:750}
+.case{margin-top:64px;display:grid;grid-template-columns:1fr 1fr;gap:48px;background:var(--bedrock);color:#F2F4F3;border-radius:16px;padding:48px}
+.case h3{font-size:1.6rem;font-variation-settings:"wdth" 115;line-height:1.2;max-width:22ch}
+.case p,.case li{color:#C9D3D1;font-size:1rem}
+.case ul{padding-left:18px;margin:12px 0 0}
+.case .fig{font-size:2.6rem;font-weight:800;color:var(--gold);font-variation-settings:"wdth" 120;line-height:1}
+.case .fig-row{display:flex;gap:40px;flex-wrap:wrap;margin:22px 0}
+.case .fig-row p{margin:6px 0 0;max-width:24ch;font-size:.95rem}
+.case .note{font-size:.85rem;color:#93A3A1;margin-top:18px}
+@media (prefers-color-scheme: dark){.case{background:#0F181C}}
 
 /* Engagements */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.panel{border:1px solid var(--border);border-radius:var(--radius);padding:36px;background:var(--surface);box-shadow:var(--shadow)}
-.panel h3{font-size:22px;font-weight:700}
-.panel.fit{background:var(--tint)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:40px}
+.two ul{padding-left:20px;margin:14px 0 0}
+.two li{margin-bottom:12px}
 
 /* Contact */
-.contact{background:linear-gradient(135deg,var(--navy) 0%,#0f2740 60%,#134a46 100%);color:#fff;text-align:center;padding:112px 0}
-.contact h2{color:#fff;font-size:clamp(28px,4.5vw,46px);font-weight:800;max-width:820px;margin:0 auto;letter-spacing:-.03em}
-.contact p{color:#c4d1dd;font-size:18px;max-width:640px;margin:20px auto 0}
-.contact .btn-primary{margin-top:36px;padding:14px 28px;font-size:16px}
-.contact .email{display:block;margin-top:18px;color:#c4d1dd;font-size:15px;text-decoration:none}
-.contact .email:hover{color:#fff;text-decoration:underline}
-
-/* Footer */
-footer{padding:32px 0;border-top:1px solid var(--border);font-size:14px;color:var(--muted)}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-footer a{text-decoration:none}
-footer a:hover{color:var(--heading)}
+.contact{background:var(--bedrock);color:#F2F4F3;padding:96px 0}
+.contact h2{color:#F2F4F3;max-width:20ch}
+.contact p{color:#C9D3D1}
+.contact-actions{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:22px}
+.cta-big{display:inline-block;background:var(--gold);color:#1D2A2F;text-decoration:none;padding:18px 30px;border-radius:12px;font-size:clamp(1.4rem,3vw,2.2rem);line-height:1.15;transition:background .15s}
+.cta-big:hover{background:#fff}
+.btn-gold{background:var(--gold);border-color:var(--gold);color:#1D2A2F}
+.btn-gold:hover{background:#fff;border-color:#fff;color:#1D2A2F}
+.mail{font-size:1rem;font-weight:600;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold)}
+.mail:hover{color:#fff;border-color:#fff}
+@media (prefers-color-scheme: dark){.contact{background:#0F181C}}
+footer{padding:28px 0;font-size:.9rem;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 
 /* Responsive */
-@media (max-width:1024px){
-  .flow{grid-template-columns:repeat(3,1fr);row-gap:28px}
-  .flow li:nth-child(3)::after{display:none}
-}
-@media (max-width:860px){
-  section{padding:80px 0}
-  .cards,.cards-3,.two-col,.stats,.case{grid-template-columns:1fr}
-  .case{padding:40px 28px;gap:32px}
-  .stats{gap:36px}
-}
 @media (max-width:900px){
+  section{padding:76px 0}
+  .hero-grid,.flow,.two,.case{grid-template-columns:1fr}
+  .hero-grid{gap:40px}
+  .hero-art{max-width:460px}
+  .compare{grid-template-columns:1fr}
+  .svc-row{grid-template-columns:1fr;gap:12px}
+  .case{padding:32px 24px}
+}
+@media (max-width:760px){
+  body{font-size:17px}
+  .wrap{padding:0 20px}
   .menu-btn{display:block}
-  .nav-cta{display:none}
-  .nav-links{position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--bg);border-bottom:1px solid var(--border);padding:8px 24px 20px;display:none}
-  .nav-links.open{display:flex}
-  .nav-links li a{display:block;padding:12px 0;font-size:16px}
-  .nav-links .mobile-cta{display:block;margin-top:8px}
-  .nav-links .mobile-cta a{display:flex;color:#fff}
+  .head-cta{display:none}
+  nav ul{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--shale);border-bottom:1px solid var(--line);padding:8px 20px 16px}
+  nav ul.open{display:flex}
+  nav li a{display:block;padding:12px 0}
+  .compare > div{padding:26px 22px}
+  .actions .btn{width:100%;text-align:center}
 }
-@media (min-width:901px){.nav-links .mobile-cta{display:none}}
-@media (max-width:600px){
-  .wrap{padding:0 16px}
-  .hero{padding:72px 0 80px}
-  .hero-ctas .btn{flex:1 1 100%}
-  .flow{grid-template-columns:1fr;gap:22px}
-  .flow li::after{display:block!important;right:auto;left:50%;top:auto;bottom:-17px;transform:translateX(-50%) rotate(135deg)}
-  .flow li:last-child::after{display:none!important}
-  .card,.panel{padding:26px 22px}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 
-<header id="top">
-  <div class="wrap nav">
-    <a class="logo" href="#top" aria-label="Lode Analytics home"><span class="logo-mark" aria-hidden="true">L</span>ode</a>
-    <nav aria-label="Primary">
-      <ul class="nav-links" id="nav-links">
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Lode Analytics home"><span class="logo-box">L</span>ode</a>
+    <nav aria-label="Main">
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul id="nav-links">
         <li><a href="#why">Why one engineer</a></li>
+        <li><a href="#how">How it works</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#approach">Approach</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li class="mobile-cta"><a class="btn btn-primary" href="mailto:andrew@lodeanalytics.com">Book a discovery call</a></li>
       </ul>
     </nav>
-    <a class="btn btn-primary btn-sm nav-cta" href="mailto:andrew@lodeanalytics.com">Book a discovery call</a>
-    <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
-      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-    </button>
+    <a class="btn btn-solid head-cta" href="mailto:andrew@lodeanalytics.com?subject=Discovery%20call">Email me</a>
   </div>
 </header>
 
-<main>
+<main id="top">
   <section class="hero">
-    <div class="wrap">
-      <span class="pill"><span class="dot"></span>Data engineering on Microsoft Fabric</span>
-      <h1>Big-firm data engineering, <span>without the big-firm invoice.</span></h1>
-      <p class="lead">Most firms staff a data project with several engineers, a project manager, and a BI specialist, and you pay for every one of them. Lode Analytics is one senior engineer who handles it end to end, from standing up your Microsoft Fabric workspace to the Power BI dashboards your team uses every day. One client at a time, fixed prices, and a system you own.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="mailto:andrew@lodeanalytics.com">Book a discovery call</a>
-        <a class="btn btn-secondary" href="#approach">See how it works &darr;</a>
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Big&#8209;firm data engineering, without the big&#8209;firm invoice.</h1>
+        <p class="lead">Most firms staff a data project with several engineers, a project manager, and a BI specialist, and you pay for every one of them. Lode is one senior engineer who handles it end to end, from standing up your Microsoft Fabric workspace to the Power BI dashboards your team uses every day. One client at a time, fixed prices, and a system you own.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="mailto:andrew@lodeanalytics.com?subject=Discovery%20call">Request a discovery call</a>
+          <a class="btn btn-line" href="#how">See how it works</a>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <svg class="section-svg" viewBox="0 0 480 520" xmlns="http://www.w3.org/2000/svg">
+          <!-- surface + dashboard -->
+          <line x1="0" y1="112" x2="480" y2="112" stroke="var(--bedrock)" stroke-width="2"/>
+          <rect x="268" y="22" width="176" height="80" rx="8" fill="var(--quartz)" stroke="var(--bedrock)" stroke-width="2"/>
+          <rect x="288" y="66" width="18" height="22" fill="var(--oxide)"/>
+          <rect x="314" y="52" width="18" height="36" fill="var(--oxide)"/>
+          <rect x="340" y="58" width="18" height="30" fill="var(--oxide)"/>
+          <rect x="366" y="40" width="18" height="48" fill="var(--ore)"/>
+          <rect x="392" y="48" width="18" height="40" fill="var(--oxide)"/>
+          <text x="288" y="40" font-size="13" font-weight="600" fill="var(--bedrock)" font-family="Archivo, sans-serif">Power BI</text>
+          <path d="M150 112 V82 H268" fill="none" stroke="var(--bedrock)" stroke-width="2"/>
+          <!-- strata -->
+          <path d="M0 124 C110 112 250 138 480 120 L480 186 C330 200 150 176 0 192 Z" fill="var(--gold)"/>
+          <path d="M0 192 C150 176 330 200 480 186 L480 250 C320 262 140 238 0 256 Z" fill="var(--silver)"/>
+          <path d="M0 256 C140 238 320 262 480 250 L480 316 C300 328 130 304 0 320 Z" fill="var(--bronze)"/>
+          <path d="M0 320 C130 304 300 328 480 316 L480 520 L0 520 Z" fill="#26363C"/>
+          <text x="330" y="160" font-size="15" font-weight="700" fill="#1D2A2F" font-family="Archivo, sans-serif">Gold</text>
+          <text x="330" y="177" font-size="12" fill="#1D2A2F" font-family="Archivo, sans-serif">business-ready</text>
+          <text x="330" y="223" font-size="15" font-weight="700" fill="#1D2A2F" font-family="Archivo, sans-serif">Silver</text>
+          <text x="330" y="240" font-size="12" fill="#1D2A2F" font-family="Archivo, sans-serif">cleaned, conformed</text>
+          <text x="330" y="287" font-size="15" font-weight="700" fill="#fff" font-family="Archivo, sans-serif">Bronze</text>
+          <text x="330" y="304" font-size="12" fill="#fff" font-family="Archivo, sans-serif">raw, as received</text>
+          <!-- source veins -->
+          <g stroke="var(--ore)" stroke-width="2" fill="none" opacity=".9">
+            <path d="M44 372 C90 380 120 420 150 462"/>
+            <path d="M44 440 C90 444 120 452 150 462"/>
+            <path d="M330 368 C260 380 190 420 150 462"/>
+            <path d="M350 430 C280 440 200 450 150 462"/>
+            <path d="M270 494 C220 488 180 476 150 462"/>
+          </g>
+          <g font-family="Archivo, sans-serif" font-size="13" font-weight="600" fill="#E8ECEA">
+            <text x="20" y="366">ERP</text>
+            <text x="20" y="434">CRM</text>
+            <text x="336" y="364">SaaS APIs</text>
+            <text x="356" y="426">SQL</text>
+            <text x="276" y="498">Files</text>
+          </g>
+          <!-- shaft -->
+          <rect x="143" y="114" width="14" height="350" fill="var(--shale)" stroke="var(--bedrock)" stroke-width="2"/>
+          <circle class="dot" cx="150" cy="456" r="4.5" fill="var(--ore)"/>
+          <circle class="dot d2" cx="150" cy="456" r="4.5" fill="var(--ore)"/>
+          <circle class="dot d3" cx="150" cy="456" r="4.5" fill="var(--ore)"/>
+        </svg>
       </div>
     </div>
   </section>
 
   <section class="why" id="why">
     <div class="wrap">
-      <div class="section-head">
-        <h2>Why one engineer</h2>
-      </div>
-      <div class="cards-3">
-        <article class="card">
-          <h3>No team overhead</h3>
-          <p>No project manager, BI specialist, or junior handoffs to pay for. You work directly with the engineer building your platform.</p>
-        </article>
-        <article class="card">
-          <h3>One client at a time</h3>
-          <p>Your project gets full focus, not a slice of a busy consultancy's bench.</p>
-        </article>
-        <article class="card">
-          <h3>Infrastructure to dashboard</h3>
-          <p>A systems administration background means I can set up Fabric capacity, workspaces, gateways, identity, and security, not just the reports.</p>
-        </article>
+      <h2>Why one engineer instead of a team</h2>
+      <div class="compare">
+        <div class="them">
+          <h3>A typical consultancy staffs your project with</h3>
+          <ul>
+            <li>Several data engineers</li>
+            <li>A project manager</li>
+            <li>A BI specialist</li>
+            <li>An infrastructure resource to set up the platform</li>
+          </ul>
+          <p style="margin-top:18px;color:var(--muted);font-size:1rem">You pay for every seat, plus the handoffs between them.</p>
+        </div>
+        <div class="us">
+          <h3 style="color:#fff">With Lode Analytics</h3>
+          <p class="big">One senior engineer covers all of it.</p>
+          <p><strong>No team overhead.</strong> You work directly with the person building your platform, with no handoffs to pay for.</p>
+          <p><strong>One client at a time.</strong> Your project gets full focus, not a slice of a busy consultancy's bench.</p>
+          <p><strong>Infrastructure to dashboard.</strong> A systems administration background means I set up Fabric capacity, workspaces, gateways, identity, and security, not just the reports.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="alt" id="approach">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">How it works</span>
-        <h2>From scattered sources to dashboards your team relies on.</h2>
+  <section id="how">
+    <div class="wrap flow">
+      <div>
+        <h2>How your data gets from scattered to trusted</h2>
+        <p class="lead" style="margin-top:20px">Each layer has one job, so problems are easy to find and every report is built from the same checked data. Everything runs in your own Microsoft tenant, on a schedule.</p>
       </div>
-      <ol class="flow">
-        <li><h3>Source systems</h3><p>ERP, CRM, SaaS, SQL, files</p></li>
-        <li><h3>Ingestion</h3><p>Scheduled, incremental loads</p></li>
-        <li><h3>Lakehouse</h3><p>OneLake, open Delta tables</p></li>
-        <li><h3>Medallion</h3><p>Raw, clean, and business-ready layers</p>
-          <div class="tags"><span class="tag bronze" title="Raw">Bronze</span><span class="tag silver" title="Clean">Silver</span><span class="tag gold" title="Business-ready">Gold</span></div></li>
-        <li><h3>Warehouse</h3><p>Modeled tables, SQL access</p></li>
-        <li><h3>Reporting</h3><p>Power BI dashboards</p></li>
+      <ol class="strata">
+        <li><span class="band" style="background:#26363C"></span><div class="txt"><h3>Connect your sources</h3><p>ERP, CRM, SaaS apps, SQL databases, and spreadsheets, including on-premises systems through a gateway.</p></div></li>
+        <li><span class="band" style="background:#3A4C52"></span><div class="txt"><h3>Ingest on a schedule</h3><p>Incremental loads pull only new or changed records, with retries and run logging.</p></div></li>
+        <li><span class="band" style="background:#56686D"></span><div class="txt"><h3>Land in your lakehouse</h3><p>One governed store in OneLake, as open Delta tables you own.</p></div></li>
+        <li><span class="band" style="background:linear-gradient(var(--bronze),var(--silver) 50%,var(--gold))"></span><div class="txt"><h3>Refine through medallion layers</h3><p>Raw history is kept, then cleaned and conformed, then shaped with your business rules.</p><div class="tags"><span class="tag" style="background:var(--bronze);color:#fff">Bronze</span><span class="tag" style="background:var(--silver)">Silver</span><span class="tag" style="background:var(--gold)">Gold</span></div></div></li>
+        <li><span class="band" style="background:#D2B06A"></span><div class="txt"><h3>Model in the warehouse</h3><p>Curated tables and views with SQL access for analysts and other tools.</p></div></li>
+        <li><span class="band" style="background:var(--oxide)"></span><div class="txt"><h3>Report in Power BI</h3><p>Shared measures, row-level security where needed, and dashboards that refresh on their own.</p></div></li>
       </ol>
     </div>
   </section>
 
-  <section id="services">
+  <section id="services" style="padding-top:24px">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Services</span>
-        <h2>Fixed-price phases, scoped to what you need next.</h2>
+      <h2>Services</h2>
+      <div class="svc">
+        <div class="svc-row">
+          <div><h3>Discovery &amp; assessment</h3><div class="terms">Fixed fee, 1–2 weeks</div></div>
+          <p>A short, paid first step when your environment or goals aren't clear yet. You get a written plan either way.</p>
+          <ul><li>Map your systems and reporting needs</li><li>Data readiness and licensing review</li><li>Fabric capacity sizing</li><li>Written roadmap and fixed-price quote</li></ul>
+        </div>
+        <div class="svc-row">
+          <div><h3>Platform build + first pipeline</h3><div class="terms">Fixed price, 30–60 days</div></div>
+          <p>No Fabric yet? I set it up properly and deliver a first working report so you see results early.</p>
+          <ul><li>Capacity, gateway, workspaces, security, Git</li><li>First source through bronze, silver, and gold</li><li>First Power BI dashboard on a schedule</li><li>Documentation and handoff</li></ul>
+        </div>
+        <div class="svc-row">
+          <div><h3>Reporting expansion</h3><div class="terms">Fixed price per phase</div></div>
+          <p>Add sources and subject areas one phase at a time, without rebuilding what already works.</p>
+          <ul><li>ERP, CRM, SaaS APIs, SQL, Excel</li><li>Sales, margin, inventory, production, finance</li><li>Shared KPI definitions</li><li>Row-level security</li></ul>
+        </div>
+        <div class="svc-row">
+          <div><h3>Health check &amp; optimization</h3><div class="terms">For existing Fabric environments</div></div>
+          <p>For platforms that are slow, failing, or costing more than they should.</p>
+          <ul><li>Diagnose capacity overruns and failed refreshes</li><li>Move full reloads to incremental</li><li>Right-size capacity and reduce cost</li><li>Monitoring and failure alerts</li></ul>
+        </div>
       </div>
-      <div class="cards">
-        <article class="card">
-          <span class="meta">Fixed fee · 1–2 weeks</span>
-          <h3>Discovery &amp; Assessment</h3>
-          <ul class="check">
-            <li>Map your systems and reporting needs</li>
-            <li>Data readiness and licensing review</li>
-            <li>Fabric capacity sizing</li>
-            <li>Written roadmap and fixed-price quote</li>
+      <div class="two">
+        <div>
+          <h3>How engagements work</h3>
+          <ul>
+            <li>Fixed price per phase, scoped in a written statement of work.</li>
+            <li>Start small: one source and one report first.</li>
+            <li>You own everything: code, tables, reports, and documentation, in your tenant.</li>
+            <li>Optional support retainer after handoff.</li>
           </ul>
-        </article>
-        <article class="card">
-          <span class="meta">Fixed price · 30–60 days</span>
-          <h3>Platform Build + First Pipeline</h3>
-          <ul class="check">
-            <li>No Fabric yet? Full setup: capacity, gateway, workspaces, security, Git</li>
-            <li>First source through bronze, silver, and gold</li>
-            <li>First Power BI dashboard on a schedule</li>
-            <li>Documentation and handoff</li>
+        </div>
+        <div>
+          <h3>A good fit if you</h3>
+          <ul>
+            <li>Run Microsoft 365 with an ERP such as Business Central.</li>
+            <li>Don't have Fabric yet, or need it set up properly.</li>
+            <li>Rebuild the same reports by hand every week.</li>
+            <li>Have departments whose numbers don't match.</li>
           </ul>
-        </article>
-        <article class="card">
-          <span class="meta">Fixed price per phase</span>
-          <h3>Reporting Expansion</h3>
-          <ul class="check">
-            <li>Add sources: ERP, CRM, SaaS APIs, SQL, Excel</li>
-            <li>New subject areas: sales, margin, inventory, production, finance</li>
-            <li>Shared KPI definitions</li>
-            <li>Row-level security</li>
-          </ul>
-        </article>
-        <article class="card">
-          <span class="meta">For existing Fabric environments</span>
-          <h3>Health Check &amp; Optimization</h3>
-          <ul class="check">
-            <li>Diagnose capacity overruns and failed refreshes</li>
-            <li>Move full reloads to incremental</li>
-            <li>Right-size capacity and reduce cost</li>
-            <li>Monitoring and failure alerts</li>
-          </ul>
-        </article>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="alt" id="experience">
+  <section class="exp" id="experience">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Experience</span>
-        <h2>Built in production, not on slides.</h2>
-      </div>
-      <div class="stats">
-        <div class="stat"><div class="num">2+ years</div><p>Leading data and IT for a food manufacturer</p></div>
-        <div class="stat"><div class="num">1.5 years</div><p>Delivering pipelines alongside a data analytics consultancy</p></div>
-        <div class="stat"><div class="num">50+</div><p>Pipelines running in production, API to report</p></div>
-      </div>
-      <p class="sources"><strong>Sources delivered end to end:</strong> REST and OData APIs, ERP connectors, SQL databases, SaaS platforms, on-premises systems via gateway, and Excel/CSV files.</p>
-    </div>
-  </section>
+      <h2>Experience</h2>
+      <p class="statement"><b>2+ years</b> leading data and IT for a food manufacturer, <b>1.5 years</b> delivering pipelines alongside a data analytics consultancy, and <b>50+ pipelines</b> running in production today.</p>
+      <p class="lead">Sources delivered end to end: REST and OData APIs, ERP connectors, SQL databases, SaaS platforms, on-premises systems through a gateway, and Excel and CSV files.</p>
 
-  <section>
-    <div class="wrap">
       <div class="case">
         <div>
-          <span class="eyebrow">Case study</span>
-          <h2>A food manufacturer replaces hand-built reports with one source of truth.</h2>
-          <p>Finance, MRP and demand planning, and OEE reporting from the same checked data, on a schedule.</p>
+          <h3>A food manufacturer replaces hand-built reports with one source of truth</h3>
+          <div class="fig-row">
+            <div><div class="fig">~100</div><p>source tables and API feeds automated across ERP, SQL, and production systems</p></div>
+            <div><div class="fig">2–3 weeks</div><p>from kickoff to first live report</p></div>
+          </div>
         </div>
-        <div class="case-stats">
-          <div class="case-stat"><div class="num">~100</div><p>Source tables and API feeds automated across ERP, SQL, and production systems</p></div>
-          <div class="case-stat"><div class="num">2–3 weeks</div><p>From kickoff to first live report</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="alt" id="engagements">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">How engagements work</span>
-        <h2>Clear scope, clear price, and nothing locked away.</h2>
-      </div>
-      <div class="two-col">
-        <div class="panel">
-          <h3>The engagement</h3>
-          <ul class="check">
-            <li>Fixed price per phase in a written SOW</li>
-            <li>Start small with one source and one report</li>
-            <li>You own everything (code, tables, reports, documentation) in your tenant</li>
-            <li>Optional support retainer</li>
-          </ul>
-        </div>
-        <div class="panel fit">
-          <h3>Good fit if you…</h3>
-          <ul class="check">
-            <li>Run Microsoft 365 with an ERP such as Business Central</li>
-            <li>Don't have Fabric yet or need it set up properly</li>
-            <li>Rebuild the same reports by hand every week</li>
-            <li>Have departments whose numbers don't match</li>
-          </ul>
+        <div>
+          <p><strong style="color:#fff">Before:</strong> reports were exported and reconciled by hand, and finance, planning, and production used different numbers for the same metrics.</p>
+          <p><strong style="color:#fff">After:</strong> finance, MRP and demand planning, and OEE reporting run from the same checked data in Microsoft Fabric, on a schedule.</p>
+          <p class="note">Company name and identifying details withheld.</p>
         </div>
       </div>
     </div>
@@ -367,29 +361,32 @@ footer a:hover{color:var(--heading)}
 
   <section class="contact" id="contact">
     <div class="wrap">
-      <h2>Start with a discovery call.</h2>
-      <p>Bring a list of your systems and the questions you can't answer today.</p>
-      <a class="btn btn-primary" href="mailto:andrew@lodeanalytics.com">Book a discovery call</a>
-      <a class="email" href="mailto:andrew@lodeanalytics.com">andrew@lodeanalytics.com</a>
+      <h2><a class="cta-big" href="mailto:andrew@lodeanalytics.com?subject=Discovery%20call">Start with a discovery call</a></h2>
+      <p style="margin-top:16px">Bring a list of your systems and the questions you can't answer today. We'll map each one and scope a first pipeline you can see working.</p>
+      <div class="contact-actions">
+        <a class="mail" href="mailto:andrew@lodeanalytics.com">andrew@lodeanalytics.com</a>
+      </div>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>&copy; 2026 Lode Analytics · Dallas–Fort Worth, Texas</span>
-    <a href="mailto:andrew@lodeanalytics.com">andrew@lodeanalytics.com</a>
+    <span>&copy; 2026 Lode Analytics</span>
+    <span>Dallas&ndash;Fort Worth, Texas</span>
   </div>
 </footer>
 
 <script>
-(function(){
-  var h=document.querySelector('header'),b=document.getElementById('menu-btn'),n=document.getElementById('nav-links');
-  function s(){h.classList.toggle('scrolled',window.scrollY>8)}
-  window.addEventListener('scroll',s,{passive:true});s();
-  b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu')});
-  n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open');b.setAttribute('aria-expanded','false')}});
-})();
+  const btn = document.querySelector('.menu-btn');
+  const links = document.getElementById('nav-links');
+  btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  links.addEventListener('click', e => {
+    if (e.target.tagName === 'A') { links.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
+  });
 </script>
 </body>
 </html>
