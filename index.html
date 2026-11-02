@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://lodeanalytics.com/">
 <meta property="og:title" content="Lode | Data engineering on Microsoft Fabric">
 <meta property="og:description" content="One senior engineer builds your Microsoft Fabric platform and Power BI reporting, end to end, at a fixed price.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C08A2E'/%3E%3Ctext x='32' y='46' font-family='Arial,sans-serif' font-size='40' font-weight='700' text-anchor='middle' fill='%231D2A2F'%3EL%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2040%2040'%3E%3Cdefs%3E%3CclipPath%20id%3D'f'%3E%3Crect%20width%3D'40'%20height%3D'40'%20rx%3D'9'%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg%20clip-path%3D'url(%23f)'%3E%3Crect%20width%3D'40'%20height%3D'40'%20fill%3D'%2334454C'%2F%3E%3Cpath%20d%3D'M0%2016.5C10%2014.5%2022%2018%2040%2015.5V40H0Z'%20fill%3D'%23E0B357'%2F%3E%3Cpath%20d%3D'M0%2024.5C12%2023%2024%2026%2040%2023.5V40H0Z'%20fill%3D'%23B9C2C4'%2F%3E%3Cpath%20d%3D'M0%2032.5C12%2031%2026%2033.5%2040%2031.5V40H0Z'%20fill%3D'%23A9714A'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
@@ -50,8 +50,8 @@ section{padding:104px 0}
 /* Header */
 header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--shale) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;justify-content:space-between;height:68px}
-.logo{display:flex;align-items:center;gap:2px;text-decoration:none;color:var(--bedrock);font-weight:800;font-size:1.35rem;font-variation-settings:"wdth" 118}
-.logo-box{width:25px;height:25px;border-radius:5px;background:var(--ore);color:#1D2A2F;display:grid;place-items:center;font-size:1rem;margin-right:1px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--bedrock);font-weight:800;font-size:1.35rem;font-variation-settings:"wdth" 118}
+.logo-mark{width:30px;height:30px;flex:none;display:block}
 nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
 nav a{color:var(--bedrock);text-decoration:none;font-size:.95rem;font-weight:500}
 nav a:hover{color:var(--ore-ink)}
@@ -170,7 +170,7 @@ footer a:hover{color:var(--gold)}
 
 <header>
   <div class="wrap bar">
-    <a class="logo" href="#top" aria-label="Lode home"><span class="logo-box">L</span>ode</a>
+    <a class="logo" href="#top" aria-label="Lode home"><svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><defs><clipPath id="lm"><rect width="40" height="40" rx="9"/></clipPath></defs><g clip-path="url(#lm)"><rect width="40" height="40" fill="#34454C"/><path d="M0 16.5C10 14.5 22 18 40 15.5V40H0Z" fill="#E0B357"/><path d="M0 24.5C12 23 24 26 40 23.5V40H0Z" fill="#B9C2C4"/><path d="M0 32.5C12 31 26 33.5 40 31.5V40H0Z" fill="#A9714A"/></g></svg>Lode</a>
     <nav aria-label="Main">
       <button class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
       <ul id="nav-links">
